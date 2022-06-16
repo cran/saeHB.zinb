@@ -19,6 +19,6 @@ data(dataZINBNS)
 \description{
 Dataset to simulate Small Area Estimation using Hierarchical Bayesian Method under Zero Inflated Negative Binomial Distribution with non-sampled areas
 
-This data contains \code{NA} values that indicates no sampled at one or more small areas. It uses the \code{dataZINB} with the direct estimates and the related variances in 5 small areas are missing.
+This data contains \code{NA} values that indicates no sampled at one or more small areas. It uses the \code{\link{dataZINB}} with the direct estimates and the related variances in 5 small areas are missing.
 }
 \keyword{datasets}

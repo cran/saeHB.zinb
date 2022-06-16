@@ -7,13 +7,15 @@
 ZinbHB(
   formula,
   iter.update = 3,
-  iter.mcmc = 1000,
-  coef.Nonzero,
+  iter.mcmc = 1100,
+  coef.nonzero,
   coef.zero,
-  var.coef.Nonzero,
+  var.coef.nonzero,
   var.coef.zero,
   thin = 1,
-  burn.in = 100,
+  burn.in = 600,
+  tau.u = 1,
+  tau.v = 1,
   data
 )
 }
@@ -22,19 +24,23 @@ ZinbHB(
 
 \item{iter.update}{Number of updates with default \code{3}}
 
-\item{iter.mcmc}{Number of total iterations per chain with default \code{1000}}
+\item{iter.mcmc}{Number of total iterations per chain with default \code{1100}}
 
-\item{coef.Nonzero}{Optional vector containing initial values \code{mu.b} for the mean of the prior distribution of the log model coefficients with default \code{rep(0,nvar)}}
+\item{coef.nonzero}{Optional vector containing initial values \code{mu.b} for the mean of the prior distribution of the log model coefficients \eqn{(\beta)} with default \code{rep(0,nvar)}}
 
-\item{coef.zero}{Optional vector containing initial values \code{mu.g} for the mean of the prior distribution of the logit model coefficients with default \code{rep(0,nvar)}}
+\item{coef.zero}{Optional vector containing initial values \code{mu.g} for the mean of the prior distribution of the logit model coefficients \eqn{(\gamma)} with default \code{rep(0,nvar)}}
 
-\item{var.coef.Nonzero}{Optional vector containing initial values \code{tau.b} for the variance of the prior distribution on the log model coefficients with default \code{rep(1,nvar)}}
+\item{var.coef.nonzero}{Optional vector containing initial values \code{tau.b} for the variance of the prior distribution on the log model coefficients \eqn{(\beta)} with default \code{rep(1,nvar)}}
 
-\item{var.coef.zero}{Optional vector containing initial values \code{tau.g} for the variance of the prior distribution of the logit model coefficients with default \code{rep(1,nvar)}}
+\item{var.coef.zero}{Optional vector containing initial values \code{tau.g} for the variance of the prior distribution of the logit model coefficients \eqn{(\gamma)} with default \code{rep(1,nvar)}}
 
 \item{thin}{Thinning rate, must be a positive integer with default \code{1}}
 
-\item{burn.in}{Number of iterations to discard at the begining with default \code{100}}
+\item{burn.in}{Number of iterations to discard at the beginning with default \code{600}}
+
+\item{tau.u}{Variance of random effect area for non-zero count of variable interest with default \code{1}}
+
+\item{tau.v}{Variance of random effect area for zero count of variable interest with default \code{1}}
 
 \item{data}{The data frame}
 }
@@ -42,9 +48,9 @@ ZinbHB(
 This function returns a list of the following objects:
    \item{Est}{A dataframe that contains the values, standar deviation, and quantile of Small Area mean Estimates using Hierarchical bayesian method}
    \item{refVar}{Estimated random effect variances}
-   \item{coefficient}{A dataframe with the estimated model coefficient consist of \code{beta} (coefficient in the log model) and \code{gamma} (coefficient in the logit model)}
-   \item{plot.beta}{Trace, Dencity, Autocorrelation Function Plot of MCMC samples \code{beta}}
-   \item{plot.gamma}{Trace, Dencity, Autocorrelation Function Plot of MCMC samples \code{gamma}}
+   \item{coefficient}{A data frame with the estimated model coefficient consist of \code{beta} (coefficient in the log model) and \code{gamma} (coefficient in the logit model)}
+   \item{plot.beta}{Trace, Density, Autocorrelation Function Plot of MCMC samples \code{beta}}
+   \item{plot.gamma}{Trace, Density, Autocorrelation Function Plot of MCMC samples \code{gamma}}
 }
 \description{
 This function is implemented to variable of interest \eqn{(y)} that assumed to be a Zero Inflated Negative Binomial Distribution. The range of data is \eqn{(y >= 0)}. This model can be used to handle overdispersion and excess zero in data.
